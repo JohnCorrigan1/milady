@@ -17,7 +17,7 @@ const Typewriter = ({ fullText }: Props) => {
         setText(prevText => prevText.concat(realText[currentIndex]));
         currentIndex++;
       }
-    }, 100); // Adjust the typing speed (milliseconds per character) to your preference
+    }, 25); // Adjust the typing speed (milliseconds per character) to your preference
 
     return () => clearInterval(interval);
   }, []);
