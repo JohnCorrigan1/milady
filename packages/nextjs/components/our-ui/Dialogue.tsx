@@ -22,7 +22,7 @@ const Typewriter = ({ fullText }: Props) => {
     return () => clearInterval(interval);
   }, []);
 
-  return <span>{text}</span>;
+  return <span className="text-white font-semibold">{text}</span>;
 };
 
 export default Typewriter;

@@ -1,8 +1,11 @@
+import { useState } from "react";
 import Head from "next/head";
 import type { NextPage } from "next";
 import Interaction from "~~/components/our-ui/Interaction";
+import Mirror from "~~/components/our-ui/Mirror";
 
 const New: NextPage = () => {
+  const [dialogueDone, setDialogueDone] = useState(false);
   return (
     <>
       <Head>
@@ -12,7 +15,8 @@ const New: NextPage = () => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
       </Head>
-      <Interaction />
+      {!dialogueDone && <Interaction setDialogueDone={setDialogueDone} />}
+      {dialogueDone && <Mirror />}
     </>
   );
 };
