@@ -38,10 +38,10 @@ const Typewriter = ({ fullText, setShowButtons, text, setText }: Props) => {
       for (const char of fullText) {
         if (isPuncutation(char)) {
           setText(prevText => prevText.concat(char));
-          await new Promise(resolve => setTimeout(resolve, 700));
+          await new Promise(resolve => setTimeout(resolve, 500));
         } else {
           setText(prevText => prevText.concat(char));
-          await new Promise(resolve => setTimeout(resolve, 60));
+          await new Promise(resolve => setTimeout(resolve, 30));
         }
       }
       setShowButtons(true);

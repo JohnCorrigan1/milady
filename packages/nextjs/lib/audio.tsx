@@ -13,14 +13,24 @@ export async function playAudio(text: string, audio: AudioContext) {
     oscillator.connect(gain);
     gain.gain.value = 0.2;
     oscillator.start();
-    await new Promise(resolve => setTimeout(resolve, 60));
+    await new Promise(resolve => setTimeout(resolve, 30));
     oscillator.stop(); // Adjust the duration as desired
     if (punctuationDelay) {
-      await new Promise(resolve => setTimeout(resolve, 700));
+      await new Promise(resolve => setTimeout(resolve, 500));
     }
   }
 
   for (const char of text) {
     await randomNoise(isPuncutation(char));
   }
+}
+
+export function audioTime(text: string) {
+  return text.split("").reduce((acc, char) => {
+    if (isPuncutation(char)) {
+      return acc + 500;
+    } else {
+      return acc + 30;
+    }
+  }, 0);
 }
