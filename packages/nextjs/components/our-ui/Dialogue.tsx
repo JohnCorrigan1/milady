@@ -1,12 +1,14 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 interface Props {
   fullText: string;
-  setRekkiDone: Dispatch<SetStateAction<boolean>>;
+  setShowButtons: Dispatch<SetStateAction<boolean>>;
+  text: string;
+  setText: Dispatch<SetStateAction<string>>;
 }
 
-const Typewriter = ({ fullText, setRekkiDone }: Props) => {
-  const [text, setText] = useState("");
+const Typewriter = ({ fullText, setShowButtons, text, setText }: Props) => {
+  // const [text, setText] = useState("");
   const realText = fullText.slice(0, 2).concat(fullText.slice(1));
 
   let currentIndex = 0;
@@ -14,7 +16,8 @@ const Typewriter = ({ fullText, setRekkiDone }: Props) => {
     const interval = setInterval(() => {
       if (currentIndex === realText.length - 1) {
         clearInterval(interval);
-        setRekkiDone(true);
+
+        setShowButtons(true);
       } else {
         setText(prevText => prevText.concat(realText[currentIndex]));
         currentIndex++;
@@ -22,7 +25,7 @@ const Typewriter = ({ fullText, setRekkiDone }: Props) => {
     }, 25); // Adjust the typing speed (milliseconds per character) to your preference
 
     return () => clearInterval(interval);
-  }, []);
+  }, [fullText]);
 
   return <span className="text-white font-semibold">{text}</span>;
 };

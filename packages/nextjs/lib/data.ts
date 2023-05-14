@@ -20,7 +20,7 @@ export const DIALOGUE: DialogueOption[] = [
   dialogue(
     "hey there want some hats?", // what rekifar says
     [
-      response("no", "sure you do"), // [what user responds with, what rekifar says back]
+      response("no", "sure you do sure you dosure osure you dosure you dosure you do"), // [what user responds with, what rekifar says back]
       response("yes", "no you don't"),
       response("maybe", "maybe"),
       response("foo", "bar"),
