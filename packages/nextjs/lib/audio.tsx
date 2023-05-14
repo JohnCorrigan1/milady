@@ -2,15 +2,14 @@ export function isPuncutation(char: string) {
   return char === "." || char === "," || char === "!" || char === "?";
 }
 
-export async function playAudio(text: string) {
+export async function playAudio(text: string, audio: AudioContext) {
   async function randomNoise(punctuationDelay: boolean) {
-    const audio = new AudioContext();
     const oscillator = audio.createOscillator();
     const gain = audio.createGain();
     gain.connect(audio.destination);
 
     oscillator.type = "sawtooth";
-    oscillator.frequency.value = 2500 - Math.random() * 100;
+    oscillator.frequency.value = 500 - Math.random() * 100;
     oscillator.connect(gain);
     gain.gain.value = 0.2;
     oscillator.start();

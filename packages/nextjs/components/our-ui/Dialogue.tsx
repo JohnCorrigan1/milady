@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
-import { isPuncutation } from "~~/lib/audio";
+import { Dispatch, SetStateAction, useEffect, useMemo } from "react";
+import { isPuncutation, playAudio } from "~~/lib/audio";
 
 interface Props {
   fullText: string;
@@ -9,6 +9,7 @@ interface Props {
 }
 
 const Typewriter = ({ fullText, setShowButtons, text, setText }: Props) => {
+  const audio = useMemo(() => new AudioContext(), []);
   // const [text, setText] = useState("");
   // const realText = fullText.slice(0, 2).concat(fullText.slice(1));
 
@@ -33,13 +34,14 @@ const Typewriter = ({ fullText, setShowButtons, text, setText }: Props) => {
     setText("");
     async function revealText() {
       console.log(fullText);
+      playAudio(fullText, audio);
       for (const char of fullText) {
         if (isPuncutation(char)) {
           setText(prevText => prevText.concat(char));
           await new Promise(resolve => setTimeout(resolve, 700));
         } else {
           setText(prevText => prevText.concat(char));
-          await new Promise(resolve => setTimeout(resolve, 25));
+          await new Promise(resolve => setTimeout(resolve, 60));
         }
       }
       setShowButtons(true);
