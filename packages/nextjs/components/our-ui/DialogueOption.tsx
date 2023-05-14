@@ -27,10 +27,9 @@ export const DialogueOption = ({ trait, setShowButtons, setFullText, index, setI
   };
 
   const handleClick = async () => {
-    // setShowButtons(false);
     setFullText(DIALOGUE[index].responses[traitToIndex(trait)].npcResponse);
     setRekkiDone(false);
-    await new Promise(r => setTimeout(r, 6000));
+    await new Promise(r => setTimeout(r, 5000));
     setIndex(index + 1);
     setShowButtons(false);
     setFullText(DIALOGUE[index].prompt);

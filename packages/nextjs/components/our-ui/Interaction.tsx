@@ -11,14 +11,8 @@ const Interaction = ({ setDialogueDone }: Props) => {
   const [index, setIndex] = useState(0);
   const [showButtons, setShowButtons] = useState(false);
   const [rekkiDone, setRekkiDone] = useState(true);
-  const [fullText, setFullText] = useState(DIALOGUE[0].prompt);
   const [text, setText] = useState("");
-
-  const updateText = () => {
-    setText("");
-    // setFullText("durrrahhh");
-    console.log(fullText);
-  };
+  const [fullText, setFullText] = useState(DIALOGUE[0].prompt);
 
   return (
     <div className="h-screen w-screen flex justify-center absolute top-0 bg-black bg-[length:100%_100%] ">
@@ -39,7 +33,6 @@ const Interaction = ({ setDialogueDone }: Props) => {
         </div>
         <div className="h-1/3 w-full">
           <div
-            onClick={updateText}
             className={`grid grid-cols-2 gap-5 h-full w-full grid-rows-2 py-5 transition-opacity duration-1000 ${
               showButtons && rekkiDone ? "opacity-100" : "opacity-0"
             } 
