@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
+import { Howl } from "howler";
 import { audioTime } from "~~/lib/audio";
 import { DIALOGUE } from "~~/lib/data";
 
@@ -36,8 +37,24 @@ export const DialogueOption = ({
     }
   };
 
+  const buttonHover = useMemo(() => {
+    const audio = new Howl({
+      src: "/button.wav",
+    });
+    audio.volume(100);
+    return audio;
+  }, []);
+  const mouseClick = useMemo(() => {
+    const audio = new Howl({
+      src: "/mouseClick.wav",
+    });
+    audio.volume(5);
+    return audio;
+  }, []);
+
   const handleClick = async () => {
     setShowButtons(false);
+    await new Promise(r => setTimeout(r, 200));
     const newText = DIALOGUE[index].responses[traitToIndex(trait)].npcResponse;
     setFullText(newText);
     setRekkiDone(false);
@@ -59,6 +76,8 @@ export const DialogueOption = ({
       {showButtons && (
         <div
           onClick={handleClick}
+          onMouseEnter={() => buttonHover.play()}
+          onMouseDown={() => mouseClick.play()}
           className={` p-2 w-full border-2 border-black hover:scale-105 active:scale-95 duration-300 cursor-pointer flex justify-between items-center shadow-xl bg-rose-500 hover:bg-rose-600`}
         >
           <p className=" font-semibold text-white">{DIALOGUE[index].responses[traitToIndex(trait)].userResponse}</p>

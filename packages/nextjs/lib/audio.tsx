@@ -11,7 +11,7 @@ export async function playAudio(text: string, audio: AudioContext) {
     oscillator.type = "sawtooth";
     oscillator.frequency.value = 500 - Math.random() * 100;
     oscillator.connect(gain);
-    gain.gain.value = 0.2;
+    gain.gain.value = 0.05;
     oscillator.start();
     await new Promise(resolve => setTimeout(resolve, 30));
     oscillator.stop(); // Adjust the duration as desired
