@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Head from "next/head";
+import { Howl } from "howler";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import Connect from "~~/components/our-ui/Connect";
@@ -11,6 +12,31 @@ const New: NextPage = () => {
   const [dialogueDone, setDialogueDone] = useState(false);
   const [isDead, setIsDead] = useState(false);
   const { isConnected } = useAccount();
+
+  const city = useMemo(() => {
+    const audio = new Howl({
+      src: "/city.wav",
+      volume: 5,
+    });
+    return audio;
+  }, []);
+
+  const rave = useMemo(() => {
+    const audio = new Howl({
+      src: "/rave.wav",
+      volume: 5,
+    });
+    return audio;
+  }, []);
+
+  useEffect(() => {
+    if (isConnected) {
+      city.play();
+      city.loop(true);
+      rave.play();
+      rave.loop(true);
+    }
+  }, [isConnected]);
 
   return (
     <>
@@ -26,6 +52,7 @@ const New: NextPage = () => {
       </Head>
       {!isConnected && <Connect />}
       {isConnected && !dialogueDone && !isDead && <Interaction setDialogueDone={setDialogueDone} />}
+      {/* {isConnected && !isDead && <City />} */}
       {dialogueDone && !isDead && <Mirror setIsDead={setIsDead} />}
       {isDead && <DeathScreen />}
     </>
