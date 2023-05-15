@@ -41,7 +41,7 @@ const Typewriter = ({ fullText, setShowButtons, text, setText }: Props) => {
           await new Promise(resolve => setTimeout(resolve, 500));
         } else {
           setText(prevText => prevText.concat(char));
-          await new Promise(resolve => setTimeout(resolve, 30));
+          await new Promise(resolve => setTimeout(resolve, 45));
         }
       }
       setShowButtons(true);

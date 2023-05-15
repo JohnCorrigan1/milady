@@ -13,7 +13,7 @@ export async function playAudio(text: string, audio: AudioContext) {
     oscillator.connect(gain);
     gain.gain.value = 0.05;
     oscillator.start();
-    await new Promise(resolve => setTimeout(resolve, 30));
+    await new Promise(resolve => setTimeout(resolve, 45));
     oscillator.stop(); // Adjust the duration as desired
     if (punctuationDelay) {
       await new Promise(resolve => setTimeout(resolve, 500));
@@ -30,7 +30,7 @@ export function audioTime(text: string) {
     if (isPuncutation(char)) {
       return acc + 500;
     } else {
-      return acc + 30;
+      return acc + 45;
     }
   }, 0);
 }

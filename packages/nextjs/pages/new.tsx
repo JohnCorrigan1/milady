@@ -5,12 +5,14 @@ import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import Connect from "~~/components/our-ui/Connect";
 import DeathScreen from "~~/components/our-ui/DeathScreen";
+import AutoScrollComponent from "~~/components/our-ui/Home";
 import Interaction from "~~/components/our-ui/Interaction";
 import Mirror from "~~/components/our-ui/Mirror";
 
 const New: NextPage = () => {
   const [dialogueDone, setDialogueDone] = useState(false);
   const [isDead, setIsDead] = useState(false);
+  const [isStarted, setIsStarted] = useState(false);
   const { isConnected } = useAccount();
 
   const city = useMemo(() => {
@@ -51,10 +53,12 @@ const New: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet"></link>
       </Head>
       {!isConnected && <Connect />}
-      {isConnected && !dialogueDone && !isDead && <Interaction setDialogueDone={setDialogueDone} />}
-      {/* {isConnected && !isDead && <City />} */}
-      {dialogueDone && !isDead && <Mirror setIsDead={setIsDead} />}
-      {isDead && <DeathScreen />}
+      {isConnected && !dialogueDone && !isDead && !isStarted && <AutoScrollComponent setIsStarted={setIsStarted} />}
+      {isConnected && !dialogueDone && !isDead && isStarted && (
+        <Interaction setDialogueDone={setDialogueDone} setIsDead={setIsDead} />
+      )}
+      {isConnected && dialogueDone && !isDead && <Mirror setIsDead={setIsDead} />}
+      {isDead && isConnected && <DeathScreen setDialogueDone={setDialogueDone} setIsDead={setIsDead} />}
     </>
   );
 };
