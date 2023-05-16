@@ -55,7 +55,7 @@ export const DIALOGUE: DialogueOption[] = [
         "Yeah uh of course I have a hat, do I look like a little bitch? I just uh lost mine. Do you have hats? I need a new one. Show me please.",
         "Haha well your in luck old buddy I think I have exactly what you need.",
       ),
-      response("Aight bro who the fuck are you?", "Quit fuckin around , You know who I am we go way back remember?"),
+      response("Aight bro who the fuck are you?", "Quit fuckin around, You know who I am we go way back remember?"),
       response(
         "*Drools with complete cluelessness breathing heavily through the mouth*",
         "God dammit why am i even...Anyways...",
