@@ -78,7 +78,7 @@ export const DialogueOption = ({
           onClick={handleClick}
           onMouseEnter={() => buttonHover.play()}
           onMouseDown={() => mouseClick.play()}
-          className={` p-1 w-full border-2 border-black hover:scale-105 active:scale-95 duration-300 cursor-pointer flex justify-between items-center shadow-xl bg-rose-500 hover:bg-rose-600`}
+          className={` p-1 w-full border-2 border-black hover:scale-[1.02] active:scale-95 duration-300 cursor-pointer flex justify-between items-center shadow-xl bg-rose-500 hover:bg-rose-600 bg-[url("/assets/redPill.png") bg-[length:100%_100%]]`}
         >
           <p className=" font-semibold text-white ">{DIALOGUE[index].responses[traitToIndex(trait)].userResponse}</p>
           {/* <p className=" font-semibold text-white">{trait}</p> */}

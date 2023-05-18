@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import NFTChecker from "./NFTChecker";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 
@@ -8,6 +9,7 @@ interface Props {
 
 const Mirror = ({ setIsDead }: Props) => {
   const [milady, setMilady] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className=" h-screen min-h-screen min-w-screen flex flex-col items-center bg-black text-white ">
@@ -27,8 +29,9 @@ const Mirror = ({ setIsDead }: Props) => {
           />
         </div>
         <div className="w-2/3 flex justify-center items-center">
-          <div className="bg-gradient-to-br from-slate-700 to-zinc-200 rounded-full  lg:h-[500px] lg:w-[500px] flex justify-center items-center p-10">
+          <div className="bg-gradient-to-br from-slate-700 to-zinc-200 rounded-full  lg:h-[500px] lg:w-[500px] flex justify-center items-center p-10 flex-col text-black">
             <img src={`https://www.miladymaker.net/milady/${milady}.png`} className="w-1/2" />
+            <p>Milady: #{milady}</p>
           </div>
         </div>
         <div className="w-1/6 flex h-full items-center justify-center">
@@ -42,7 +45,12 @@ const Mirror = ({ setIsDead }: Props) => {
       </div>
       <div className="h-1/3 lg:h-1/3 w-full text-sm lg:text-lg p-5 ">
         <div className="w-full flex justify-center">
-          <p>3000/10000</p>
+          <button
+            onClick={() => setIsOpen(true)}
+            className="bg-pink-300 hover:scale-[1.02] p-2 rounded-lg shadow-md shadow-rose-600 hover:bg-pink-400 active:scale-95 duration-200"
+          >
+            NFT Checker
+          </button>
         </div>
         <div className="flex lg:gap-16 w-full justify-between lg:justify-center ">
           <div className="flex flex-col lg:gap-5 w-1/4 lg:w-1/5 xl:w-1/6 items-center">
@@ -70,6 +78,7 @@ const Mirror = ({ setIsDead }: Props) => {
           </div>
         </div>
       </div>
+      <NFTChecker isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
