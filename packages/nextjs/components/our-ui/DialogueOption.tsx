@@ -75,14 +75,17 @@ export const DialogueOption = ({
     <>
       {showButtons && (
         <div
+          className="p-2 active:scale-[0.98] hover:scale-[1.02] bg-emerald-700 flex items-center animate-background shadow-xl [animation-duration:_2s] from-pink-500 via-red-500 to-yellow-500 bg-[length:400%_400%] hover:bg-gradient-to-r duration-300 cursor-pointer"
+          // <div
           onClick={handleClick}
           onMouseEnter={() => buttonHover.play()}
           onMouseDown={() => mouseClick.play()}
-          className={` p-1 w-full border-2 border-black hover:scale-[1.02] active:scale-95 duration-300 cursor-pointer flex justify-between items-center shadow-xl bg-rose-500 hover:bg-rose-600 bg-[url("/assets/redPill.png") bg-[length:100%_100%]]`}
+          // className={`h-full rounded-xl  p-1 w-full active:scale-95 duration-300 cursor-pointer flex justify-between items-center`}
         >
           <p className=" font-semibold text-white ">{DIALOGUE[index].responses[traitToIndex(trait)].userResponse}</p>
           {/* <p className=" font-semibold text-white">{trait}</p> */}
         </div>
+        // </div>
       )}
     </>
   );
