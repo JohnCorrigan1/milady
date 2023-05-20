@@ -31,14 +31,14 @@ const StartPage = ({ setIsExperience }: Props) => {
     <div className="flex flex-col gap-10 items-center justify-center h-screen w-screen bg-black">
       <h1 className="text-6xl text-white">Welcome</h1>
       <div className="flex justify-center gap-10 w-full text-white">
-        <button
+        <div
           onClick={() => setIsExperience(true)}
           onMouseEnter={() => buttonHover.play()}
           onMouseDown={() => mouseClick.play()}
-          className=" py-3 w-1/3 max-w-[175px] xl:text-lg font-bold bg-blue-500 hover:scale-105 hover:bg-blue-600 active:scale-95 duration-200"
+          className=" py-8 w-1/3 max-w-[275px] xl:text-lg font-bold  hover:scale-105 bg-[url('/assets/redPill.png')] bg-[length:100%_100%] flex justify-center items-center cursor-pointer active:scale-95 duration-200"
         >
           Enter
-        </button>
+        </div>
         <Link
           target="_blank"
           rel="noreffer"
