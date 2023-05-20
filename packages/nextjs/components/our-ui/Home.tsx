@@ -31,7 +31,7 @@ const AutoScrollComponent = ({ setIsStarted }: Props) => {
   return (
     <div
       onClick={() => setIsStarted(true)}
-      className="bg-[url('/background.png')] bg-[length:100%_100%] h-[125vh] md:h-[225vh] lg:h-[300vh] max-w-screen overflow-hidden"
+      className="bg-[url('/assets/mint-page-may20.gif')] bg-[length:100%_100%] h-[125vh] md:h-[225vh] lg:h-[300vh] max-w-screen overflow-hidden"
     ></div>
   );
 };
