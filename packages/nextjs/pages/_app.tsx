@@ -32,7 +32,7 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
   const { isDarkMode } = useDarkMode();
 
   const { route } = useRouter();
-  const ours = ["/new"];
+  const ours = ["/new", "/mint"];
 
   const isOurs = ours.includes(route);
 
