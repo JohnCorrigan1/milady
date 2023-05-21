@@ -1,13 +1,15 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Head from "next/head";
 import { Howl } from "howler";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import MintContainer from "~~/components/our-ui/MintContainer";
+import MintMultiple from "~~/components/our-ui/MintMultiple";
 import OurHeader from "~~/components/our-ui/OurHeader";
 
 const Mint: NextPage = () => {
   const { isConnected } = useAccount();
+  const [isOpen, setIsOpen] = useState(false);
 
   const city = useMemo(() => {
     const audio = new Howl({
@@ -46,9 +48,10 @@ const Mint: NextPage = () => {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet"></link>
       </Head>
-      <div className="min-w-screen min-h-screen">
+      <div className={`min-w-screen min-h-screen ${isOpen && "fixed"}`}>
         <OurHeader />
-        <MintContainer />
+        <MintContainer setIsOpen={setIsOpen} />
+        <MintMultiple isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </>
   );
