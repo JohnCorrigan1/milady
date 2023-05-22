@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import Link from "next/link";
 import Typewriter from "./Dialogue";
 import { DialogueOption } from "./DialogueOption";
 import { DIALOGUE } from "~~/lib/data";
@@ -19,12 +20,14 @@ const Interaction = ({ setDialogueDone, setIsDead }: Props) => {
     <div className="h-screen w-screen flex justify-center absolute top-0 bg-black bg-[length:100%_100%] ">
       <div className="w-full 2xl:w-3/4 h-full 2xl:pt-10 ">
         <div className="h-1/2 xl:h-2/3 w-full bg-amber-500 bg-[url('/assets/city2.png')] bg-[length:100%_100%] bg-opacity-90 flex flex-col justify-center items-center  gap-1 lg:gap-5 p-5 shadow-xl">
-          <img
-            onClick={() => setDialogueDone(true)}
-            src="/assets/milady.png"
-            alt="milady"
-            className="h-1/2  2xl:h-3/4 rounded-lg shadow-xl hover:scale-110 duration-300"
-          />
+          <Link className="h-1/2 flex" href="/mint">
+            <img
+              onClick={() => setDialogueDone(true)}
+              src="/assets/milady.png"
+              alt="milady"
+              className="h-1/2  2xl:h-3/4 rounded-lg shadow-xl hover:scale-110 duration-300"
+            />
+          </Link>
           <div className="p-2 md:p-3 text-xs xl:text-[16px] 2xl:text-lg border-2 border-black rounded-lg w-full lg:w-2/3 bg-zinc-800 bg-opacity-90">
             <div>
               <Typewriter setShowButtons={setShowButtons} fullText={fullText} text={text} setText={setText} />

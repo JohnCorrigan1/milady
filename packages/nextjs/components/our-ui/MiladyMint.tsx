@@ -57,7 +57,14 @@ const MiWenchMint = () => {
           </p>
           <p>4200/10000</p>
         </div>
-        <input type="number" onChange={handleAmount} className="input input-primary" placeholder="Amount" />
+        <input
+          min={0}
+          max={10000}
+          type="number"
+          onChange={handleAmount}
+          className="input input-primary"
+          placeholder="Amount"
+        />
         <button className="btn btn-primary">Mint</button>
       </div>
       <img src="/assets/milady.png" alt="urmilady" className="2xl:w-1/4 xl:w-1/3 md:w-2/5 lg:w-1/3 w-full rounded-lg" />
