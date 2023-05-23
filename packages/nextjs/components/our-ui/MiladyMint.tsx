@@ -1,10 +1,14 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import { query } from "~~/lib/SubgraphFetch";
 
 interface Props {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const MiladyMint = ({ setIsOpen }: Props) => {
+  const handleMint = () => {
+    query();
+  };
   return (
     <div className="flex flex-col md:flex-row lg:gap-10 gap-5 justify-between items-center">
       <div className="flex flex-col gap-5 bg-base-100 p-5 xl:p-10 rounded-lg shadow-xl w-full xl:w-1/2 ">
@@ -32,7 +36,9 @@ const MiladyMint = ({ setIsOpen }: Props) => {
           <p>free mints: 420/1000</p>
           <p>Wallet limit: 0/5</p>
         </div>
-        <button className="btn btn-primary">Mint</button>
+        <button onClick={handleMint} className="btn btn-primary">
+          Mint
+        </button>
         <button onClick={() => setIsOpen(true)} className="btn btn-secondary">
           Mint Multiple
         </button>

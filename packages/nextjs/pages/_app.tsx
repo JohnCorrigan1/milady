@@ -5,7 +5,7 @@ import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowki
 import "@rainbow-me/rainbowkit/styles.css";
 import NextNProgress from "nextjs-progressbar";
 import { Toaster } from "react-hot-toast";
-// import { Client, Provider, cacheExchange, fetchExchange } from "urql";
+import { Client, Provider, cacheExchange, fetchExchange } from "urql";
 import { useDarkMode } from "usehooks-ts";
 import { WagmiConfig } from "wagmi";
 import { Footer } from "~~/components/Footer";
@@ -17,13 +17,13 @@ import { wagmiClient } from "~~/services/web3/wagmiClient";
 import { appChains } from "~~/services/web3/wagmiConnectors";
 import "~~/styles/globals.css";
 
-// const APIURL = "https://api.thegraph.com/subgraphs/name/mercuricchloride/hackathon";
+const APIURL = "https://api.thegraph.com/subgraphs/name/mercuricchloride/hackathon";
 
 const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
-  // const urqlClient = new Client({
-  //   url: APIURL,
-  //   exchanges: [cacheExchange, fetchExchange],
-  // });
+  const urqlClient = new Client({
+    url: APIURL,
+    exchanges: [cacheExchange, fetchExchange],
+  });
 
   const price = useNativeCurrencyPrice();
   const setNativeCurrencyPrice = useGlobalState(state => state.setNativeCurrencyPrice);
@@ -54,16 +54,16 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
         avatar={BlockieAvatar}
         theme={isDarkTheme ? darkTheme() : lightTheme()}
       >
-        {/* <Provider value={urqlClient}> */}
-        <div className="flex flex-col min-h-screen">
-          {!isOurs && <Header />}
-          <main className="relative flex flex-col flex-1">
-            <Component {...pageProps} />
-          </main>
-          {!isOurs && <Footer />}
-        </div>
-        <Toaster />
-        {/* </Provider> */}
+        <Provider value={urqlClient}>
+          <div className="flex flex-col min-h-screen">
+            {!isOurs && <Header />}
+            <main className="relative flex flex-col flex-1">
+              <Component {...pageProps} />
+            </main>
+            {!isOurs && <Footer />}
+          </div>
+          <Toaster />
+        </Provider>
       </RainbowKitProvider>
     </WagmiConfig>
   );

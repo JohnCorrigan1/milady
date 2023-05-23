@@ -8,9 +8,10 @@ interface Selected {
 interface Props {
   setSelected: Dispatch<SetStateAction<Selected>>;
   selected: Selected;
+  tokenId: number;
 }
 
-const MiladyCard = ({ setSelected, selected }: Props) => {
+const MiladyCard = ({ tokenId, setSelected, selected }: Props) => {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleClick = () => {
@@ -27,7 +28,7 @@ const MiladyCard = ({ setSelected, selected }: Props) => {
 
   return (
     <div className="flex flex-col gap-3 bg-base-300 p-5 rounded-lg items-center shadow-lg">
-      <h1 className="text-xl font-bold">#420</h1>
+      <h1 className="text-xl font-bold">#{tokenId}</h1>
       <img src="/assets/milady.png" className="rounded-lg" />
       <button
         onClick={handleClick}

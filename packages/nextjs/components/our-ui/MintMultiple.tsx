@@ -1,9 +1,11 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import MiladyCard from "./MiladyCard";
+import { User } from "~~/pages/mint";
 
 interface Props {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  user: User;
 }
 
 interface Selected {
@@ -11,8 +13,9 @@ interface Selected {
   count: number;
 }
 
-const MintMultiple = ({ isOpen, setIsOpen }: Props) => {
+const MintMultiple = ({ isOpen, setIsOpen, user }: Props) => {
   const [selected, setSelected] = useState<Selected>({ ids: [], count: 0 });
+  console.log(user);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -36,12 +39,11 @@ const MintMultiple = ({ isOpen, setIsOpen }: Props) => {
           <button className="btn btn-primary px-10">Mint</button>
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-5">
-          <MiladyCard setSelected={setSelected} selected={selected} />
-          <MiladyCard setSelected={setSelected} selected={selected} />
-          <MiladyCard setSelected={setSelected} selected={selected} />
-          <MiladyCard setSelected={setSelected} selected={selected} />
-          <MiladyCard setSelected={setSelected} selected={selected} />
-          <MiladyCard setSelected={setSelected} selected={selected} />
+          {user.pixeladys.map((milady, index) => (
+            <MiladyCard tokenId={milady} setSelected={setSelected} selected={selected} key={index} />
+          ))}
+          <MiladyCard tokenId={420} setSelected={setSelected} selected={selected} />
+          <MiladyCard tokenId={420} setSelected={setSelected} selected={selected} />
         </div>
       </div>
     </>
