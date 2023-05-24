@@ -1,9 +1,8 @@
-export async function query() {
+export async function query(address: string) {
   const endpointUrl = "https://api.thegraph.com/subgraphs/name/mercuricchloride/cli-milady";
-
   const query = `
 {
-  users(where: {id: "0x4a2c786651229175407d3a2d405d1998bcf40614"}) {
+  users(where: {id: "${address.toLowerCase()}"}) {
    	id
     miladys
     remilios

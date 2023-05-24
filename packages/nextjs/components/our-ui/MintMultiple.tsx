@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import MiladyCard from "./MiladyCard";
+import { XCircleIcon } from "@heroicons/react/24/solid";
 import { User } from "~~/pages/mint";
 
 interface Props {
@@ -15,7 +16,6 @@ interface Selected {
 
 const MintMultiple = ({ isOpen, setIsOpen, user }: Props) => {
   const [selected, setSelected] = useState<Selected>({ ids: [], count: 0 });
-  console.log(user);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -29,7 +29,12 @@ const MintMultiple = ({ isOpen, setIsOpen, user }: Props) => {
         onClick={handleClose}
         className="bg-black bg-opacity-80 absolute top-0 right-0 h-full min-h-screen min-w-screen w-full"
       ></div>
-      <div className="2xl:w-1/2 w-4/5 lg:w-3/4 lg:h-[65vh] h-[80vh] bg-base-100 fixed lg:top-[17.5vh] top-[10vh]  left-[10vw] lg:left-[12.5vw] 2xl:left-[25vw] rounded-lg overflow-y-scroll overflow-x-none flex flex-col items-center gap-5 p-5">
+      <div
+        className={`2xl:w-1/2 w-4/5 lg:w-3/4 lg:h-[65vh] h-[80vh] bg-base-100 fixed lg:top-[17.5vh] top-[10vh]  left-[10vw] lg:left-[12.5vw] 2xl:left-[25vw] rounded-lg overflow-y-scroll overflow-x-none flex flex-col items-center gap-5 p-5 transition-opacity duration-1000 ${
+          isOpen ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <XCircleIcon height="48" className="absolute top-0 right-20" />
         <div className="flex flex-col items-center">
           <h1 className="text-xl font-bold">Select nfts to convert (free)</h1>
           <div className="flex gap-10">

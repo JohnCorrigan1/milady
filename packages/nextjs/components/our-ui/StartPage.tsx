@@ -1,17 +1,12 @@
-import { Dispatch, SetStateAction, useEffect, useMemo } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
 import Link from "next/link";
 import { Howl } from "howler";
-import { query } from "~~/lib/SubgraphFetch";
 
 interface Props {
   setIsExperience: Dispatch<SetStateAction<boolean>>;
 }
 
 const StartPage = ({ setIsExperience }: Props) => {
-  useEffect(() => {
-    query();
-  }, []);
-
   const buttonHover = useMemo(() => {
     const audio = new Howl({
       src: "/button.wav",

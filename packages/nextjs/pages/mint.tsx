@@ -26,11 +26,10 @@ const Mint: NextPage = () => {
     if (isConnected) {
       getUser();
     }
-    console.log(user);
   }, [isConnected]);
 
   const getUser = async () => {
-    const result: any = await query();
+    const result: any = await query("0x4a2c786651229175407d3a2d405d1998bcf40614");
     if (result) setUser(result.data.users[0]);
   };
 

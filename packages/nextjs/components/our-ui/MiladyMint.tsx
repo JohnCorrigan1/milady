@@ -1,14 +1,18 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { query } from "~~/lib/SubgraphFetch";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 interface Props {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const MiladyMint = ({ setIsOpen }: Props) => {
-  const handleMint = () => {
-    query();
-  };
+  const { writeAsync } = useScaffoldContractWrite({
+    contractName: "YourContract",
+    functionName: "setGreeting",
+    args: ["hi"],
+    value: "0.01",
+  });
+
   return (
     <div className="flex flex-col md:flex-row lg:gap-10 gap-5 justify-between items-center">
       <div className="flex flex-col gap-5 bg-base-100 p-5 xl:p-10 rounded-lg shadow-xl w-full xl:w-1/2 ">
@@ -36,14 +40,18 @@ const MiladyMint = ({ setIsOpen }: Props) => {
           <p>free mints: 420/1000</p>
           <p>Wallet limit: 0/5</p>
         </div>
-        <button onClick={handleMint} className="btn btn-primary">
+        <button onClick={writeAsync} className="btn btn-primary">
           Mint
         </button>
         <button onClick={() => setIsOpen(true)} className="btn btn-secondary">
           Mint Multiple
         </button>
       </div>
-      <img src="/assets/milady.png" alt="urmilady" className="2xl:w-1/4 xl:w-1/3 md:w-2/5 lg:w-1/3 w-full rounded-lg" />
+      <img
+        src="/assets/milady.png"
+        alt="urmilady"
+        className="2xl:w-1/4 xl:w-1/3 md:w-2/5 lg:w-1/3 w-full rounded-lg shadow-lg"
+      />
     </div>
   );
 };
@@ -73,7 +81,11 @@ const MiWenchMint = () => {
         />
         <button className="btn btn-primary">Mint</button>
       </div>
-      <img src="/assets/milady.png" alt="urmilady" className="2xl:w-1/4 xl:w-1/3 md:w-2/5 lg:w-1/3 w-full rounded-lg" />
+      <img
+        src="/assets/milady.png"
+        alt="urmilady"
+        className="2xl:w-1/4 xl:w-1/3 md:w-2/5 lg:w-1/3 w-full rounded-lg shadow-lg"
+      />
     </div>
   );
 };
